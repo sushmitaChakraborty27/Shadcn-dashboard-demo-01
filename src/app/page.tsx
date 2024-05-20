@@ -1,6 +1,7 @@
 import BarChart from "@/components/BarChart";
 import Card, { CardContent, CardProps } from "@/components/Card";
 import PageTitle from "@/components/PageTitle";
+import SalesCard, { SalesProps } from "@/components/SalesCard";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 import Image from "next/image";
 
@@ -31,6 +32,34 @@ const cardData: CardProps[] = [
   },
 ];
 
+const userSalesData: SalesProps[] = [
+  {
+    name: "Olivia Martin",
+    email: "olivia.martin@email.com",
+    saleAmount: "+$1,999.00",
+  },
+  {
+    name: "Jackson Lee",
+    email: "Jackson.Lee@email.com",
+    saleAmount: "+$1,999.00",
+  },
+  {
+    name: "Isabella Nguyen",
+    email: "Isabella.Nguyen@email.com",
+    saleAmount: "+$39.00",
+  },
+  {
+    name: "William Kim",
+    email: "William.Kim@email.com",
+    saleAmount: "+$299.00",
+  },
+  {
+    name: "Sofia Davis",
+    email: "Sofia.Davis@email.com",
+    saleAmount: "+$129.00",
+  },
+];
+
 export default function Home() {
   return (
     <div className="flex flex-col gap-5 w-full">
@@ -55,10 +84,22 @@ export default function Home() {
           <p className="p-4 font-semibold">Overview</p>
           <BarChart />
         </CardContent>
-        <CardContent>
-          <p>Recent Sales</p>
-          <p className="text-sm text-gray-400">You made 265 sales this month</p>
+        <CardContent className="flex justify-between gap-4">
+          <section>
+            <p>Recent Sales</p>
+            <p className="text-sm text-gray-400">
+              You made 265 sales this month
+            </p>
+          </section>
 
+          {userSalesData.map((eachItem, index) => (
+            <SalesCard
+              key={index}
+              name={eachItem.name}
+              email={eachItem.email}
+              saleAmount={eachItem.saleAmount}
+            />
+          ))}
         </CardContent>
       </section>
     </div>
